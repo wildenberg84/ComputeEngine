@@ -6,6 +6,9 @@ import sys
 sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 
 def send_function():
+    import numpy
+    print(numpy.empty([3,2], dtype = int)) # obviously this is useless as it prints on the server
+    
     return 'Hello from beyond!'
 
 try:
