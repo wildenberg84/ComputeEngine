@@ -5,51 +5,10 @@ import sys
 import os
 import keygen
 
+# Load client public/private keys
 pub_key = ''
 priv_key = ''
-
-# Check for client public key
-if os.path.isfile('./client_public.key'):
-    # key exists, load from file
-    with open('client_public.key', 'r', encoding='utf8') as f:
-        try:
-            pub_key = f.read()
-            f.close()
-        except Exception as e:
-            print(e)
-else:
-    # key file does not exist, generate a key and safe to file
-    pub_key = keygen.generate_key(256)
-    print(pub_key) # DEBUG ONLY -- REMOVE!
-    
-    with open('client_public.key', 'w+', encoding='utf8') as f:
-        try:
-            f.write(pub_key)
-            f.close()
-        except Exception as e:
-            print(e)
-    
-# Check for server private key
-if os.path.isfile('./client_private.key'):
-    # key exists, load from file
-    with open('client_private.key', 'r', encoding='utf8') as f:
-        try:
-            priv_key = f.read()
-            f.close()
-        except Exception as e:
-            print(e)
-else:
-    # key file does not exist, generate a key and safe to file
-    priv_key = keygen.generate_key(256)
-    print(priv_key) # DEBUG ONLY -- REMOVE!
-    
-    with open('client_private.key', 'w+', encoding='utf8') as f:
-        try:
-            f.write(priv_key)
-            f.close()
-        except Exception as e:
-            print(e)
-            
+pub_key, priv_key = keygen.get_keys('./client_public.key', 'client_private.key')
 
 # custom function to send to server
 def send_function():
