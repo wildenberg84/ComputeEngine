@@ -6,7 +6,9 @@ import keygen
 # 0       -- Reserved for extensibility
 # 1       -- Read function (next 16 bytes represent function size, then read function)
 protocol = {0 : 'undefined',
-            1 : lib.read_function
+            1 : lib.read_function,
+            2 : lib.exchange_pub_key,
+            3 : lib.agree_on_shared_key
             }
 
 # Load server public/private keys
